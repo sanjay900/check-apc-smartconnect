@@ -1,0 +1,152 @@
+{
+    "bypass_ups_init": {
+      "event": {
+        "name": "UPS Initiated Bypass"
+      },
+      "mode": {
+        "title": "Bypass",
+        "subtitle": "UPS initiated bypass",
+        "name": "UPS Initiated Bypass"
+      },
+      "state": {
+        "name": "UPS Initiated Bypass"
+      },
+      "severity": 3,
+      "notification_level": 3,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_UPSInitiatedBypass",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "critical"
+    },
+    "bypass_user_init": {
+      "event": {
+        "name": "User Initiated Bypass"
+      },
+      "mode": {
+        "title": "Bypass",
+        "subtitle": "User initiated bypass",
+        "name": "User Initiated Bypass"
+      },
+      "state": {
+        "name": "User Initiated Bypass"
+      },
+      "severity": 2,
+      "notification_level": 2,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_UserInitiatedBypass",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "warning"
+    },
+    "onbattery": {
+      "event": {
+        "name": "UPS On Battery"
+      },
+      "mode": {
+        "title": "On Battery",
+        "subtitle": "Estimated runtime",
+        "name": "UPS On Battery"
+      },
+      "state": {
+        "name": "UPS On Battery"
+      },
+      "severity": 2,
+      "notification_level": 2,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_UPSOnBatt",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "warning"
+    },
+    "onbattery.low_battery": {
+      "event": {
+        "name": "UPS Low Battery"
+      },
+      "mode": {
+        "title": "Low Battery",
+        "subtitle": "Estimated runtime",
+        "name": "UPS Low Battery"
+      },
+      "state": {
+        "name": "UPS Low Battery"
+      },
+      "severity": 3,
+      "notification_level": 3,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_LowBatt",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "critical"
+    },
+    "onbattery.rtc": {
+      "event": {
+        "name": "Runtime Calibration Initiated, UPS On Battery"
+      },
+      "mode": {
+        "title": "On Battery",
+        "subtitle": "Runtime calibration initiated",
+        "name": "Runtime Calibration Initiated, UPS On Battery"
+      },
+      "state": {
+        "name": "Runtime Calibration Initiated, UPS On Battery"
+      },
+      "severity": 1,
+      "notification_level": 1,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_UPSOnBattRTC",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "info"
+    },
+    "online": {
+      "event": {
+        "name": "UPS On Line, No Active Events"
+      },
+      "mode": {
+        "title": "On Line",
+        "subtitle": "Estimated runtime",
+        "name": "UPS On Line, No Active Events"
+      },
+      "state": {
+        "name": "UPS On Line, No Active Events"
+      },
+      "severity": 0,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_UPSOnLine",
+      "meta": [],
+      "severityText": "ok"
+    },
+    "ups_off": {
+      "event": {
+        "name": "UPS Output Power Turned Off"
+      },
+      "mode": {
+        "title": "UPS Off",
+        "subtitle": "Output power turned off",
+        "name": "UPS Output Power Turned Off"
+      },
+      "state": {
+        "name": "UPS Output Power Turned Off"
+      },
+      "severity": 1,
+      "notification_level": 1,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_OutputOff",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "info"
+    }
+  }

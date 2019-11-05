@@ -1,0 +1,573 @@
+{
+    "batt_connected": {
+      "event": {
+        "name": "Battery Connected"
+      },
+      "state": {
+        "name": "Battery Connected"
+      },
+      "severity": 1,
+      "notification_level": 1,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_BattConnect",
+      "meta": [
+        "model",
+        "serialNumber",
+        "op_mode"
+      ],
+      "severityText": "info"
+    },
+    "batt_disconnected": {
+      "event": {
+        "name": "Battery Disconnected"
+      },
+      "state": {
+        "name": "Battery Disconnected"
+      },
+      "severity": 3,
+      "notification_level": 3,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_BattDisconnect",
+      "meta": [
+        "model",
+        "serialNumber",
+        "op_mode"
+      ],
+      "severityText": "critical"
+    },
+    "batt_eol": {
+      "event": {
+        "name": "Battery End of Life Exceeded",
+        "description": "Battery Replacement Due {{meta.expiration}}"
+      },
+      "state": {
+        "name": "Battery End of Life Exceeded",
+        "description": "Battery Replacement Due {{meta.expiration}}"
+      },
+      "severity": 2,
+      "notification_level": 4,
+      "notify_reseller": true,
+      "topic_alias": "UPSEvents_BattEOL",
+      "meta": [
+        "model",
+        "serialNumber",
+        "battery_sku",
+        "expiration"
+      ],
+      "severityText": "warning"
+    },
+    "batt_eol_impending": {
+      "event": {
+        "name": "Battery Replacement Due",
+        "description": "Battery Replacement Due {{meta.expiration}}"
+      },
+      "state": {
+        "name": "Battery Replacement Due",
+        "description": "Battery Replacement Due {{meta.expiration}}"
+      },
+      "severity": 1,
+      "notification_level": 4,
+      "notify_reseller": true,
+      "topic_alias": "UPSEvents_BattEOLImpending",
+      "meta": [
+        "model",
+        "serialNumber",
+        "battery_sku",
+        "expiration"
+      ],
+      "severityText": "info"
+    },
+    "batt_needs_replacement": {
+      "event": {
+        "name": "Replace Battery"
+      },
+      "state": {
+        "name": "Replace Battery"
+      },
+      "severity": 3,
+      "notification_level": 4,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_ReplaceBattery",
+      "meta": [
+        "model",
+        "serialNumber",
+        "battery_sku",
+        "expiration"
+      ],
+      "severityText": "critical"
+    },
+    "batt_replaced": {
+      "event": {
+        "name": "Battery Replaced"
+      },
+      "state": {
+        "name": "Battery Replaced"
+      },
+      "severity": 1,
+      "notification_level": 1,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_BattReplaced",
+      "meta": [
+        "model",
+        "serialNumber",
+        "op_mode"
+      ],
+      "severityText": "info"
+    },
+    "batt_temp_exc": {
+      "event": {
+        "name": "Battery: Temperature Threshold Exceeded"
+      },
+      "state": {
+        "name": "Battery: Temperature Threshold Exceeded"
+      },
+      "severity": 3,
+      "notification_level": 3,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_BattTemp",
+      "meta": [
+        "model",
+        "serialNumber",
+        "op_mode"
+      ],
+      "severityText": "critical"
+    },
+    "batt_temp_exc_warn": {
+      "event": {
+        "name": "Battery: High Temperature"
+      },
+      "state": {
+        "name": "Battery: High Temperature"
+      },
+      "severity": 3,
+      "notification_level": 3,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_BattTempExceed",
+      "meta": [
+        "model",
+        "serialNumber",
+        "op_mode"
+      ],
+      "severityText": "critical"
+    },
+    "bypass_ups_init": {
+      "event": {
+        "name": "UPS Initiated Bypass"
+      },
+      "mode": {
+        "title": "Bypass",
+        "subtitle": "UPS initiated bypass",
+        "name": "UPS Initiated Bypass"
+      },
+      "state": {
+        "name": "UPS Initiated Bypass"
+      },
+      "severity": 3,
+      "notification_level": 3,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_UPSInitiatedBypass",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "critical"
+    },
+    "bypass_user_init": {
+      "event": {
+        "name": "User Initiated Bypass"
+      },
+      "mode": {
+        "title": "Bypass",
+        "subtitle": "User initiated bypass",
+        "name": "User Initiated Bypass"
+      },
+      "state": {
+        "name": "User Initiated Bypass"
+      },
+      "severity": 2,
+      "notification_level": 2,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_UserInitiatedBypass",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "warning"
+    },
+    "comm_est": {
+      "event": {
+        "name": "Communications Established"
+      },
+      "state": {
+        "name": "Communications Established"
+      },
+      "severity": 1,
+      "notification_level": 1,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_CommsEstablished",
+      "meta": [
+        "timestamp",
+        "op_mode"
+      ],
+      "severityText": "info"
+    },
+    "comm_lost": {
+      "event": {
+        "name": "Communications Lost"
+      },
+      "state": {
+        "name": "Communications Lost"
+      },
+      "severity": 3,
+      "notification_level": 3,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_LostComm",
+      "meta": [
+        "timestamp"
+      ],
+      "severityText": "critical"
+    },
+    "fw_install_in_progress": {
+      "event": {
+        "name": "UPS Firmware Upgrade in Progress"
+      },
+      "state": {
+        "name": "UPS Firmware Upgrade in Progress"
+      },
+      "severity": 1,
+      "notification_level": 1,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_FWInstalling",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "info"
+    },
+    "fw_out_of_date": {
+      "event": {
+        "name": "UPS Firmware Version Out of Date"
+      },
+      "state": {
+        "name": "UPS Firmware Version Out of Date"
+      },
+      "severity": 2,
+      "notification_level": 4,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_FWUpgradeAvail",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "warning"
+    },
+    "fw_up_to_date": {
+      "event": {
+        "name": "UPS Firmware Version Up to Date"
+      },
+      "state": {
+        "name": "UPS Firmware Version Up to Date"
+      },
+      "severity": 1,
+      "notification_level": 1,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_FWUpgradeUpToDate",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "info"
+    },
+    "generic_fault": {
+      "event": {
+        "name": "UPS Fault",
+        "description": "UPS Fault (Error Code: {{meta.error_code}})"
+      },
+      "state": {
+        "name": "UPS Fault",
+        "description": "UPS Fault (Error Code: {{meta.error_code}})"
+      },
+      "severity": 3,
+      "notification_level": 3,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_UPSFault",
+      "meta": [
+        "model",
+        "serialNumber",
+        "error_code",
+        "op_mode"
+      ],
+      "severityText": "critical"
+    },
+    "onbattery": {
+      "event": {
+        "name": "UPS On Battery"
+      },
+      "mode": {
+        "title": "On Battery",
+        "subtitle": "Estimated runtime",
+        "name": "UPS On Battery"
+      },
+      "state": {
+        "name": "UPS On Battery"
+      },
+      "severity": 2,
+      "notification_level": 2,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_UPSOnBatt",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "warning"
+    },
+    "onbattery.low_battery": {
+      "event": {
+        "name": "UPS Low Battery"
+      },
+      "mode": {
+        "title": "Low Battery",
+        "subtitle": "Estimated runtime",
+        "name": "UPS Low Battery"
+      },
+      "state": {
+        "name": "UPS Low Battery"
+      },
+      "severity": 3,
+      "notification_level": 3,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_LowBatt",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "critical"
+    },
+    "onbattery.rtc": {
+      "event": {
+        "name": "Runtime Calibration Initiated, UPS On Battery"
+      },
+      "mode": {
+        "title": "On Battery",
+        "subtitle": "Runtime calibration initiated",
+        "name": "Runtime Calibration Initiated, UPS On Battery"
+      },
+      "state": {
+        "name": "Runtime Calibration Initiated, UPS On Battery"
+      },
+      "severity": 1,
+      "notification_level": 1,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_UPSOnBattRTC",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "info"
+    },
+    "online": {
+      "event": {
+        "name": "UPS On Line, No Active Events"
+      },
+      "mode": {
+        "title": "On Line",
+        "subtitle": "Estimated runtime",
+        "name": "UPS On Line, No Active Events"
+      },
+      "state": {
+        "name": "UPS On Line, No Active Events"
+      },
+      "severity": 0,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_UPSOnLine",
+      "meta": [],
+      "severityText": "ok"
+    },
+    "overload": {
+      "event": {
+        "name": "UPS Overload"
+      },
+      "state": {
+        "name": "UPS Overload"
+      },
+      "severity": 3,
+      "notification_level": 3,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_UPSOverload",
+      "meta": [
+        "model",
+        "serialNumber",
+        "op_mode"
+      ],
+      "severityText": "critical"
+    },
+    "plugin_init": {
+      "event": {
+        "name": "Plugin Initialised"
+      },
+      "state": {
+        "description": "Plugin Initialised at {{meta.timestamp}}",
+        "name": "Plugin Initialised"
+      },
+      "severity": 2,
+      "notification_level": 2,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_LostComm",
+      "meta": [
+        "model",
+        "serialNumber",
+        "timestamp"
+      ],
+      "severityText": "warning"
+    },
+    "power_restored": {
+      "event": {
+        "name": "Power Restored"
+      },
+      "severity": 1,
+      "notification_level": 1,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_PowerRestored",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "info"
+    },
+    "return_from_bypass": {
+      "event": {
+        "name": "Return From Bypass"
+      },
+      "severity": 1,
+      "notification_level": 1,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_ReturnFromBypass",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "info"
+    },
+    "shutdown": {
+      "event": {
+        "name": "UPS Shutdown"
+      },
+      "state": {
+        "name": "UPS Shutdown"
+      },
+      "severity": 1,
+      "notification_level": 1,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_UPSShutdown",
+      "meta": [
+        "model",
+        "serialNumber",
+        "op_mode"
+      ],
+      "severityText": "info"
+    },
+    "site_wiring_fault": {
+      "event": {
+        "name": "Site Wiring Fault"
+      },
+      "state": {
+        "name": "Site Wiring Fault"
+      },
+      "severity": 2,
+      "notification_level": 2,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_SiteWiringFault",
+      "meta": [
+        "model",
+        "serialNumber",
+        "op_mode"
+      ],
+      "severityText": "warning"
+    },
+    "ups_off": {
+      "event": {
+        "name": "UPS Output Power Turned Off"
+      },
+      "mode": {
+        "title": "UPS Off",
+        "subtitle": "Output power turned off",
+        "name": "UPS Output Power Turned Off"
+      },
+      "state": {
+        "name": "UPS Output Power Turned Off"
+      },
+      "severity": 1,
+      "notification_level": 1,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_OutputOff",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "info"
+    },
+    "ups_on": {
+      "event": {
+        "name": "UPS On"
+      },
+      "severity": 1,
+      "notification_level": 1,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_UPSOn",
+      "meta": [
+        "model",
+        "serialNumber"
+      ],
+      "severityText": "info"
+    },
+    "warr_exp_impending": {
+      "event": {
+        "name": "Warranty Expires Soon",
+        "description": "Warranty Expires On {{meta.expiration}}"
+      },
+      "state": {
+        "name": "Warranty Expires Soon",
+        "description": "Warranty Expires On {{meta.expiration}}"
+      },
+      "severity": 1,
+      "notification_level": 4,
+      "notify_reseller": true,
+      "topic_alias": "UPSEvents_WarrantyWillExpire",
+      "meta": [
+        "expiration"
+      ],
+      "severityText": "info"
+    },
+    "warr_expired": {
+      "event": {
+        "name": "Warranty Expired",
+        "description": "Warranty Expired On {{meta.expiration}}"
+      },
+      "state": {
+        "name": "Warranty Expired",
+        "description": "Warranty Expired On {{meta.expiration}}"
+      },
+      "severity": 1,
+      "notification_level": 4,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_WarrantyExpired",
+      "meta": [
+        "expiration"
+      ],
+      "severityText": "info"
+    },
+    "warr_renewed": {
+      "event": {
+        "name": "Warranty Renewed"
+      },
+      "state": {
+        "name": "Warranty Renewed"
+      },
+      "severity": 1,
+      "notification_level": 1,
+      "notify_reseller": false,
+      "topic_alias": "UPSEvents_WarrantyRenewed",
+      "meta": [],
+      "severityText": "info"
+    }
+  }
