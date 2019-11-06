@@ -10,7 +10,7 @@ my $username = shift;
 my $password = shift;
 # Store all cookies, we need them for auth. Cache them in a file, that way, we can reuse them across sessions
 my $jar = HTTP::Cookies->new( 
-    file => '/tmp/apc-cookies.txt',
+    file => "/tmp/apc-cookies-$id.txt",
     autosave => 1,
     ignore_discard => 1,
 );
@@ -66,8 +66,12 @@ $res = $ua->request(GET "https://smartconnect.apc.com/api/v1/gateways/$id?collec
 # upsOperatingMode
 my $ups_other_data = decode_json($res->decoded_content);
 my $mode = $ups_core_data->{'status'}{'upsOperatingMode'};
-my $runtime = $ups_other_data->{'battery'}{'runtimeRemaining'}/60;
-my $status = "- LOAD $ups_other_data->{'output'}{'loadRealPercentage'}\% - TEMP $ups_other_data->{'battery'}{'temperature'}C - BAT $ups_other_data->{'battery'}{'chargeStatePercentage'}\% - RUNTIME $runtime MIN";
+my $runtime = $ups_other_data->{'battery'}{'runtimeRemaining'};
+my $load = $ups_other_data->{'output'}{'loadRealPercentage'};
+my $temp = $ups_other_data->{'battery'}{'temperature'};
+my $charge = $ups_other_data->{'battery'}{'chargeStatePercentage'};
+my $status = "- LOAD $load\% - TEMP ${temp}C - BAT $charge\% - RUNTIME $runtime | 'load'=${load}\%;;;; 'temp'=${temp};;;; 'runtime'=${runtime}s;;;; 'charge'=${charge}\%";
+
 if ($mode eq "online") {
     print "OK $status\n";
     exit(0);
