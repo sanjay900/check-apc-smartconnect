@@ -22,7 +22,7 @@ my $ups_core_data = decode_json($res->decoded_content);
 # If error is defined, than we don't have permission and need to log in.
 if (defined $ups_core_data->{'error'}) {
     # Navigate to login page
-    my $res = $ua->request(GET 'https://smartconnect.apc.com/auth/login');
+    $res = $ua->request(GET 'https://smartconnect.apc.com/auth/login');
     # The login page sets a bunch of cookies using javascript. Fake that using a regex.
     my $str = $res->decoded_content;
     while($str =~ /document.cookie\s*=\s+"([^"]+)=([^"]+);Path=(.);(secure)?";/g) {
@@ -34,8 +34,6 @@ if (defined $ups_core_data->{'error'}) {
 
     # Construct a form that we can submit for login
     my %data = (
-        "j_id0:j_id45" => "j_id0:j_id45",
-        "j_id0:j_id45:j_id58" => "j_id0:j_id45:j_id58",
         'AJAXREQUEST' => '_viewRoot',
         'usrname' => $username,
         'password' => $password,
@@ -43,6 +41,10 @@ if (defined $ups_core_data->{'error'}) {
         'com.salesforce.visualforce.ViewStateVersion' => $res->decoded_content =~ /"com.salesforce.visualforce.ViewStateVersion"\s+value="([^"]+)"/g,
         'com.salesforce.visualforce.ViewState' => $res->decoded_content =~ /"com.salesforce.visualforce.ViewState"\s+value="([^"]+)"/g,
     );
+    my @jid=$res->decoded_content =~ /userloginInJavascript.*((j_id0:j_id\d+):j_id\d+)/g;
+    foreach(@jid) {
+        $data{$_} = $_;
+    }
     # Submit that form
     $res = $ua->request(POST 'https://secureidentity.schneider-electric.com/identity/UserLogin', [ %data ]);
 
@@ -63,7 +65,6 @@ if (defined $ups_core_data->{'error'}) {
 }
 # And information about
 $res = $ua->request(GET "https://smartconnect.apc.com/api/v1/gateways/$id?collection=input,output,battery,network");
-# upsOperatingMode
 my $ups_other_data = decode_json($res->decoded_content);
 my $mode = $ups_core_data->{'status'}{'upsOperatingMode'};
 my $runtime = $ups_other_data->{'battery'}{'runtimeRemaining'};
