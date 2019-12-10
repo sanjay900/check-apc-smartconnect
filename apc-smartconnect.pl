@@ -5,6 +5,8 @@ use LWP::UserAgent;
 use HTTP::Request::Common;
 use HTTP::Cookies;
 use JSON;
+use Try::Tiny;
+
 my $id = shift;
 my $username = shift;
 my $password = shift;
@@ -18,9 +20,15 @@ my $jar = HTTP::Cookies->new(
 my $ua = LWP::UserAgent->new(cookie_jar => $jar);
 # Try and fetch UPS data
 my $res = $ua->request(GET "https://smartconnect.apc.com/api/v1/gateways/$id");
-my $ups_core_data = decode_json($res->decoded_content);
-# If error is defined, than we don't have permission and need to log in.
-if (defined $ups_core_data->{'error'}) {
+my $ups_core_data;
+# Using a try catch here means that json errors are also treated as if we did not log in successfully
+try {
+    $ups_core_data = decode_json($res->decoded_content);
+    # If error is defined, than we don't have permission and need to log in.
+    if (defined $ups_core_data->{'error'}) {
+        die $ups_core_data->{'error'};
+    }
+} catch {
     # Navigate to login page
     $res = $ua->request(GET 'https://smartconnect.apc.com/auth/login');
     # The login page sets a bunch of cookies using javascript. Fake that using a regex.
@@ -41,6 +49,7 @@ if (defined $ups_core_data->{'error'}) {
         'com.salesforce.visualforce.ViewStateVersion' => $res->decoded_content =~ /"com.salesforce.visualforce.ViewStateVersion"\s+value="([^"]+)"/g,
         'com.salesforce.visualforce.ViewState' => $res->decoded_content =~ /"com.salesforce.visualforce.ViewState"\s+value="([^"]+)"/g,
     );
+    
     # Some extra fields are appended to the form on submit. We can easily find them using a regex, and append them
     # Without these, a login will not be successful.
     my @jid=$res->decoded_content =~ /userloginInJavascript.*((j_id0:j_id\d+):j_id\d+)/g;
@@ -64,7 +73,7 @@ if (defined $ups_core_data->{'error'}) {
     # And now, finally, we can request information about a ups
     $res = $ua->request(GET "https://smartconnect.apc.com/api/v1/gateways/$id");
     $ups_core_data = decode_json($res->decoded_content);
-}
+};
 # And information about
 $res = $ua->request(GET "https://smartconnect.apc.com/api/v1/gateways/$id?collection=input,output,battery,network");
 my $ups_other_data = decode_json($res->decoded_content);
