@@ -41,6 +41,8 @@ if (defined $ups_core_data->{'error'}) {
         'com.salesforce.visualforce.ViewStateVersion' => $res->decoded_content =~ /"com.salesforce.visualforce.ViewStateVersion"\s+value="([^"]+)"/g,
         'com.salesforce.visualforce.ViewState' => $res->decoded_content =~ /"com.salesforce.visualforce.ViewState"\s+value="([^"]+)"/g,
     );
+    # Some extra fields are appended to the form on submit. We can easily find them using a regex, and append them
+    # Without these, a login will not be successful.
     my @jid=$res->decoded_content =~ /userloginInJavascript.*((j_id0:j_id\d+):j_id\d+)/g;
     foreach(@jid) {
         $data{$_} = $_;
